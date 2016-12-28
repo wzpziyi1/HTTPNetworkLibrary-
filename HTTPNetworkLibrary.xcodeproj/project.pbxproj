@@ -108,10 +108,6 @@
 				09C633FE1E13BFA1004C0480 /* ViewController.h */,
 				09C633FF1E13BFA1004C0480 /* ViewController.m */,
 				09C634011E13BFA1004C0480 /* Main.storyboard */,
-				09C634071E13BFA2004C0480 /* Assets.xcassets */,
-				09C634091E13BFA2004C0480 /* LaunchScreen.storyboard */,
-				09C6340C1E13BFA2004C0480 /* Info.plist */,
-				09C634041E13BFA2004C0480 /* HTTPNetworkLibrary.xcdatamodeld */,
 				09C633F81E13BFA1004C0480 /* Supporting Files */,
 			);
 			path = HTTPNetworkLibrary;
@@ -120,6 +116,10 @@
 		09C633F81E13BFA1004C0480 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				09C634071E13BFA2004C0480 /* Assets.xcassets */,
+				09C634091E13BFA2004C0480 /* LaunchScreen.storyboard */,
+				09C6340C1E13BFA2004C0480 /* Info.plist */,
+				09C634041E13BFA2004C0480 /* HTTPNetworkLibrary.xcdatamodeld */,
 				09C633F91E13BFA1004C0480 /* main.m */,
 			);
 			name = "Supporting Files";

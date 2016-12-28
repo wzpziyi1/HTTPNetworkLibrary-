@@ -5,6 +5,22 @@
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
+      <BuildActionEntries>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "09C633F41E13BFA1004C0480"
+               BuildableName = "HTTPNetworkLibrary.app"
+               BlueprintName = "HTTPNetworkLibrary"
+               ReferencedContainer = "container:HTTPNetworkLibrary.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+      </BuildActionEntries>
    </BuildAction>
    <TestAction
       buildConfiguration = "Debug"
@@ -12,7 +28,36 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "09C634101E13BFA2004C0480"
+               BuildableName = "HTTPNetworkLibraryTests.xctest"
+               BlueprintName = "HTTPNetworkLibraryTests"
+               ReferencedContainer = "container:HTTPNetworkLibrary.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "09C6341B1E13BFA2004C0480"
+               BuildableName = "HTTPNetworkLibraryUITests.xctest"
+               BlueprintName = "HTTPNetworkLibraryUITests"
+               ReferencedContainer = "container:HTTPNetworkLibrary.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "09C633F41E13BFA1004C0480"
+            BuildableName = "HTTPNetworkLibrary.app"
+            BlueprintName = "HTTPNetworkLibrary"
+            ReferencedContainer = "container:HTTPNetworkLibrary.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
@@ -26,6 +71,16 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "09C633F41E13BFA1004C0480"
+            BuildableName = "HTTPNetworkLibrary.app"
+            BlueprintName = "HTTPNetworkLibrary"
+            ReferencedContainer = "container:HTTPNetworkLibrary.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -35,6 +90,16 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "09C633F41E13BFA1004C0480"
+            BuildableName = "HTTPNetworkLibrary.app"
+            BlueprintName = "HTTPNetworkLibrary"
+            ReferencedContainer = "container:HTTPNetworkLibrary.xcodeproj">
+         </BuildableReference>
+      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
