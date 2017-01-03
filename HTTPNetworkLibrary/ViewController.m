@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "ZYNetwork.h"
 
 @interface ViewController ()
 
@@ -18,18 +19,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    NSURL *url = [NSURL URLWithString:@"http://www.baidu.com"];
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:url cachePolicy:0 timeoutInterval:10];
-    request.HTTPMethod = @"POST";
-    NSString *str = [NSString stringWithFormat:@"name=%@&sex=%@", @"pppp", @"woman"];
-    request.HTTPBody = [str dataUsingEncoding:NSUTF8StringEncoding];
     
-    NSURLSession *session = [NSURLSession sharedSession];
-    NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
-        NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
-        NSLog(@"----%@", str);
-    }];
-    [task resume];
 }
 
 
@@ -38,5 +28,18 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)clickRequestBtn:(id)sender
+{
+    NSDictionary *params = @{
+                             @"age": @(100),
+                             @"name": @"wang",
+                             @"sex": @"woman"
+                             };
+    [ZYNetwork requestWithUrlStr:@"http://rap.taobao.org/mockjsdata/12383/network/test" method:@"GET" params:params callBlock:^(NSData *data, NSURLResponse *response, NSError *error) {
+        
+        NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSLog(@"%@", str);
+    }];
+}
 
 @end
