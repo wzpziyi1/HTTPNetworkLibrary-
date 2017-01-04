@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		097305B71E1B8E8200891012 /* ZYNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 097305B61E1B8E8200891012 /* ZYNetworkManager.m */; };
 		09C633FA1E13BFA1004C0480 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 09C633F91E13BFA1004C0480 /* main.m */; };
 		09C633FD1E13BFA1004C0480 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 09C633FC1E13BFA1004C0480 /* AppDelegate.m */; };
 		09C634001E13BFA1004C0480 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09C633FF1E13BFA1004C0480 /* ViewController.m */; };
@@ -38,6 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		097305B51E1B8E8200891012 /* ZYNetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYNetworkManager.h; sourceTree = "<group>"; };
+		097305B61E1B8E8200891012 /* ZYNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYNetworkManager.m; sourceTree = "<group>"; };
 		09C633F51E13BFA1004C0480 /* HTTPNetworkLibrary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HTTPNetworkLibrary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		09C633F91E13BFA1004C0480 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		09C633FB1E13BFA1004C0480 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -157,6 +160,8 @@
 				09C634341E1500F1004C0480 /* ZYNetwork.m */,
 				09C634361E1510A0004C0480 /* AFQueryStringPair.h */,
 				09C634371E1510A0004C0480 /* AFQueryStringPair.m */,
+				097305B51E1B8E8200891012 /* ZYNetworkManager.h */,
+				097305B61E1B8E8200891012 /* ZYNetworkManager.m */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -298,6 +303,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				097305B71E1B8E8200891012 /* ZYNetworkManager.m in Sources */,
 				09C634351E1500F1004C0480 /* ZYNetwork.m in Sources */,
 				09C634001E13BFA1004C0480 /* ViewController.m in Sources */,
 				09C633FD1E13BFA1004C0480 /* AppDelegate.m in Sources */,
@@ -541,6 +547,7 @@
 				09C634271E13BFA2004C0480 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		09C634281E13BFA2004C0480 /* Build configuration list for PBXNativeTarget "HTTPNetworkLibraryTests" */ = {
 			isa = XCConfigurationList;
@@ -549,6 +556,7 @@
 				09C6342A1E13BFA2004C0480 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		09C6342B1E13BFA2004C0480 /* Build configuration list for PBXNativeTarget "HTTPNetworkLibraryUITests" */ = {
 			isa = XCConfigurationList;
@@ -557,6 +565,7 @@
 				09C6342D1E13BFA2004C0480 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
