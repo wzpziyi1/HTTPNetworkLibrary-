@@ -17,7 +17,6 @@
 		09C6340B1E13BFA2004C0480 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 09C634091E13BFA2004C0480 /* LaunchScreen.storyboard */; };
 		09C634161E13BFA2004C0480 /* HTTPNetworkLibraryTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 09C634151E13BFA2004C0480 /* HTTPNetworkLibraryTests.m */; };
 		09C634211E13BFA2004C0480 /* HTTPNetworkLibraryUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 09C634201E13BFA2004C0480 /* HTTPNetworkLibraryUITests.m */; };
-		09C634351E1500F1004C0480 /* ZYNetwork.m in Sources */ = {isa = PBXBuildFile; fileRef = 09C634341E1500F1004C0480 /* ZYNetwork.m */; };
 		09C634381E1510A0004C0480 /* AFQueryStringPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 09C634371E1510A0004C0480 /* AFQueryStringPair.m */; };
 /* End PBXBuildFile section */
 
@@ -58,8 +57,6 @@
 		09C6341C1E13BFA2004C0480 /* HTTPNetworkLibraryUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HTTPNetworkLibraryUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		09C634201E13BFA2004C0480 /* HTTPNetworkLibraryUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HTTPNetworkLibraryUITests.m; sourceTree = "<group>"; };
 		09C634221E13BFA2004C0480 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		09C634331E1500F1004C0480 /* ZYNetwork.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYNetwork.h; sourceTree = "<group>"; };
-		09C634341E1500F1004C0480 /* ZYNetwork.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYNetwork.m; sourceTree = "<group>"; };
 		09C634361E1510A0004C0480 /* AFQueryStringPair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFQueryStringPair.h; sourceTree = "<group>"; };
 		09C634371E1510A0004C0480 /* AFQueryStringPair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFQueryStringPair.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -156,8 +153,6 @@
 		09C634321E1500C9004C0480 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				09C634331E1500F1004C0480 /* ZYNetwork.h */,
-				09C634341E1500F1004C0480 /* ZYNetwork.m */,
 				09C634361E1510A0004C0480 /* AFQueryStringPair.h */,
 				09C634371E1510A0004C0480 /* AFQueryStringPair.m */,
 				097305B51E1B8E8200891012 /* ZYNetworkManager.h */,
@@ -304,7 +299,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				097305B71E1B8E8200891012 /* ZYNetworkManager.m in Sources */,
-				09C634351E1500F1004C0480 /* ZYNetwork.m in Sources */,
 				09C634001E13BFA1004C0480 /* ViewController.m in Sources */,
 				09C633FD1E13BFA1004C0480 /* AppDelegate.m in Sources */,
 				09C634061E13BFA2004C0480 /* HTTPNetworkLibrary.xcdatamodeld in Sources */,

@@ -59,13 +59,15 @@ FOUNDATION_EXPORT NSArray * AFQueryStringPairsFromKeyAndValue(NSString *key, id 
 
 - (void)bulidRequest
 {
+    NSString *completeUrlStr = self.urlStr;
+    NSString *paramStr = nil;
     if (self.type == ZYNetworkManagerMethodTypeGet && self.params != nil && self.params.count >0)
     {
-        NSString *paramStr = AFQueryStringFromParameters(self.params);
-        NSString *completeUrlStr = [NSString stringWithFormat:@"%@?%@", self.urlStr, paramStr];
-        self.request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:completeUrlStr] cachePolicy:0 timeoutInterval:10];
+        paramStr = AFQueryStringFromParameters(self.params);
+        completeUrlStr = [NSString stringWithFormat:@"%@?%@", self.urlStr, paramStr];
+        
     }
-    
+    self.request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:completeUrlStr] cachePolicy:0 timeoutInterval:10];
     self.request.HTTPMethod = self.method;
     
     if (self.params.count > 0)

@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "ZYNetwork.h"
+#import "ZYNetworkManager.h"
 
 @interface ViewController ()
 
@@ -30,13 +30,33 @@
 
 - (IBAction)clickRequestBtn:(id)sender
 {
+    [self testGet];
+
+}
+
+- (void)testGet
+{
+    //    http://101.200.237.210/Test/get
     NSDictionary *params = @{
-                             @"age": @(100),
-                             @"name": @"wang",
-                             @"sex": @"woman"
+                             @"token": @"1",
+                             @"userId": @"1",
                              };
-    [ZYNetwork requestWithUrlStr:@"http://rap.taobao.org/mockjsdata/12383/network/test" method:@"GET" params:params callBlock:^(NSData *data, NSURLResponse *response, NSError *error) {
-        
+    
+    [ZYNetworkManager executeGet:@"http://101.200.237.210/Test/get" params:params callBack:^(NSData *data, NSURLResponse *response, NSError *error) {
+        NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+        NSLog(@"%@", str);
+    }];
+}
+
+- (void)testPost
+{
+    //    http://101.200.237.210/Test/post
+    NSDictionary *params = @{
+                             @"token": @"1",
+                             @"userId": @"1",
+                             @"name": @"翔6666"
+                             };
+    [ZYNetworkManager executePost:@"http://101.200.237.210/Test/post" params:params callBack:^(NSData *data, NSURLResponse *response, NSError *error) {
         NSString *str = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
         NSLog(@"%@", str);
     }];
