@@ -8,6 +8,8 @@
 
 #import "ZYNetworkManager.h"
 #import "AFQueryStringPair.h"
+#import "ZYFileEntity.h"
+
 
 @interface ZYNetworkManager()
 @property (nonatomic, copy) NSString *urlStr;
@@ -15,6 +17,8 @@
 @property (nonatomic, assign) ZYNetworkManagerMethodType type;
 @property (nonatomic, strong) NSDictionary *params;
 @property (nonatomic, strong) NSMutableURLRequest *request;
+@property (nonatomic, strong) NSArray<ZYFileEntity *> *fileArr;
+
 @property (nonatomic, copy) void(^callBack)(NSData *data, NSURLResponse *response, NSError *error);
 
 
@@ -28,7 +32,7 @@
 FOUNDATION_EXPORT NSArray * AFQueryStringPairsFromDictionary(NSDictionary *dictionary);
 FOUNDATION_EXPORT NSArray * AFQueryStringPairsFromKeyAndValue(NSString *key, id value);
 
-- (instancetype)initWithUrlStr:(NSString *)urlStr type:(ZYNetworkManagerMethodType)type params:(NSDictionary *)params callBack:(void(^)(NSData *data, NSURLResponse *response, NSError *error))callBack;
+- (instancetype)initWithUrlStr:(NSString *)urlStr type:(ZYNetworkManagerMethodType)type params:(NSDictionary *)params callBack:(void(^)(NSData *data, NSURLResponse *response, NSError *error))callBack
 {
     if (self = [super init])
     {
@@ -37,6 +41,36 @@ FOUNDATION_EXPORT NSArray * AFQueryStringPairsFromKeyAndValue(NSString *key, id 
         self.type = type;
         self.callBack = callBack;
         self.session = [NSURLSession sharedSession];
+        
+        switch (type) {
+            case ZYNetworkManagerMethodTypeGet:
+                self.method = @"GET";
+                break;
+                
+            case ZYNetworkManagerMethodTypePost:
+                self.method = @"POST";
+                break;
+                
+            case ZYNetworkManagerMethodTypeHead:
+                self.method = @"HEAD";
+                break;
+            default:
+                break;
+        }
+    }
+    return self;
+}
+
+- (instancetype)initWithUrlStr:(NSString *)urlStr type:(ZYNetworkManagerMethodType)type params:(NSDictionary *)params fileArr:(NSArray<ZYFileEntity *> *)fileArr callBack:(void(^)(NSData *data, NSURLResponse *response, NSError *error))callBack
+{
+    if (self = [super init])
+    {
+        self.urlStr = urlStr;
+        self.params = params;
+        self.type = type;
+        self.callBack = callBack;
+        self.session = [NSURLSession sharedSession];
+        self.fileArr = fileArr;
         
         switch (type) {
             case ZYNetworkManagerMethodTypeGet:
@@ -70,7 +104,11 @@ FOUNDATION_EXPORT NSArray * AFQueryStringPairsFromKeyAndValue(NSString *key, id 
     self.request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:completeUrlStr] cachePolicy:0 timeoutInterval:10];
     self.request.HTTPMethod = self.method;
     
-    if (self.params.count > 0)
+    if (self.fileArr.count > 0)
+    {
+        [self.request setValue:@"multipart/form-data; boundary=PitayaUGl0YXlh" forHTTPHeaderField:@"Content-Type"];
+    }
+    else if (self.params.count > 0)
     {
         [self.request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-Type"];
     }
@@ -78,10 +116,41 @@ FOUNDATION_EXPORT NSArray * AFQueryStringPairsFromKeyAndValue(NSString *key, id 
 
 - (void)bulidBody
 {
-    if (self.type == ZYNetworkManagerMethodTypePost && self.params != nil && self.params.count >0)
+    NSMutableData *data = [NSMutableData data];
+    
+    if (self.fileArr != nil && self.fileArr.count > 0)
     {
-        self.request.HTTPBody = [AFQueryStringFromParameters(self.params) dataUsingEncoding:NSUTF8StringEncoding];
+        //拼接参数
+        for (NSString *key in self.params.allKeys)
+        {
+            NSObject *value = self.params[key];
+            [data appendData:[[NSString stringWithFormat:@"--PitayaUGl0YXlh\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+            NSString *tmpStr = [NSString stringWithFormat:@"Content-Disposition: form-data; name=%@\r\n\r\n", key];
+            [data appendData: [tmpStr dataUsingEncoding:NSUTF8StringEncoding]];
+            tmpStr = [NSString stringWithFormat:@"%@\r\n", value.description];
+            [data appendData: [tmpStr dataUsingEncoding:NSUTF8StringEncoding]];
+        }
+        
+        //拼接图片
+        for (ZYFileEntity *entity in self.fileArr)
+        {
+            [data appendData:[[NSString stringWithFormat:@"--PitayaUGl0YXlh\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
+            
+            NSString *tmpStr = [NSString stringWithFormat:@"Content-Disposition: form-data; name=%@; fileName=%@ \r\n\r\n", entity.name, entity.url.description.lastPathComponent];
+            [data appendData: [tmpStr dataUsingEncoding:NSUTF8StringEncoding]];
+            NSData *imageData = [NSData dataWithContentsOfURL:entity.url];
+            [data appendData:imageData];
+            [data appendData:[@"\r\n" dataUsingEncoding:NSUTF8StringEncoding]];
+        }
+        [data appendData:[[NSString stringWithFormat:@"--PitayaUGl0YXlh--\r\n"] dataUsingEncoding:NSUTF8StringEncoding]];
     }
+    else if (self.type == ZYNetworkManagerMethodTypePost && self.params != nil && self.params.count >0)
+    {
+        [data appendData:[AFQueryStringFromParameters(self.params) dataUsingEncoding:NSUTF8StringEncoding]];
+    }
+    
+    self.request.HTTPBody = data;
+    
 }
 
 - (void)executeTask
@@ -115,6 +184,12 @@ FOUNDATION_EXPORT NSArray * AFQueryStringPairsFromKeyAndValue(NSString *key, id 
 + (void)executePost:(NSString *)urlStr params:(NSDictionary *)params callBack:(void(^)(NSData *data, NSURLResponse *response, NSError *error))callBack
 {
     ZYNetworkManager *manager = [[self alloc] initWithUrlStr:urlStr type:ZYNetworkManagerMethodTypePost params:params callBack:callBack];
+    [manager executeRequest];
+}
+
++ (void)uploadFile:(NSString *)urlStr params:(NSDictionary *)params files:(NSArray<ZYFileEntity *>*)files callBack:(void(^)(NSData *data, NSURLResponse *response, NSError *error))callBack
+{
+    ZYNetworkManager *manager = [[self alloc] initWithUrlStr:urlStr type:ZYNetworkManagerMethodTypePost params:params fileArr:files callBack:callBack];
     [manager executeRequest];
 }
 

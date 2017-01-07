@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+@class ZYFileEntity;
+
 typedef NS_ENUM(NSInteger, ZYNetworkManagerMethodType)
 {
     ZYNetworkManagerMethodTypeGet,
@@ -22,4 +24,7 @@ typedef NS_ENUM(NSInteger, ZYNetworkManagerMethodType)
 + (void)executeGet:(NSString *)urlStr params:(NSDictionary *)params callBack:(void(^)(NSData *data, NSURLResponse *response, NSError *error))callBack;
 
 + (void)executePost:(NSString *)urlStr params:(NSDictionary *)params callBack:(void(^)(NSData *data, NSURLResponse *response, NSError *error))callBack;
+
+//上传文件
++ (void)uploadFile:(NSString *)urlStr params:(NSDictionary *)params files:(NSArray<ZYFileEntity *>*)files callBack:(void(^)(NSData *data, NSURLResponse *response, NSError *error))callBack;
 @end

@@ -39,7 +39,7 @@
     //    http://101.200.237.210/Test/get
     NSDictionary *params = @{
                              @"token": @"1",
-                             @"userId": @"1",
+                             @"userId": @"1"
                              };
     
     [ZYNetworkManager executeGet:@"http://101.200.237.210/Test/get" params:params callBack:^(NSData *data, NSURLResponse *response, NSError *error) {

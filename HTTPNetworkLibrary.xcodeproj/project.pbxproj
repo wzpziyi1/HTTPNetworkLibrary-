@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		097305B71E1B8E8200891012 /* ZYNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 097305B61E1B8E8200891012 /* ZYNetworkManager.m */; };
+		0982AC261E1F7DAE00950ED5 /* ZYFileEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 0982AC251E1F7DAE00950ED5 /* ZYFileEntity.m */; };
 		09C633FA1E13BFA1004C0480 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 09C633F91E13BFA1004C0480 /* main.m */; };
 		09C633FD1E13BFA1004C0480 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 09C633FC1E13BFA1004C0480 /* AppDelegate.m */; };
 		09C634001E13BFA1004C0480 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09C633FF1E13BFA1004C0480 /* ViewController.m */; };
@@ -40,6 +41,8 @@
 /* Begin PBXFileReference section */
 		097305B51E1B8E8200891012 /* ZYNetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYNetworkManager.h; sourceTree = "<group>"; };
 		097305B61E1B8E8200891012 /* ZYNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYNetworkManager.m; sourceTree = "<group>"; };
+		0982AC241E1F7DAE00950ED5 /* ZYFileEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZYFileEntity.h; sourceTree = "<group>"; };
+		0982AC251E1F7DAE00950ED5 /* ZYFileEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZYFileEntity.m; sourceTree = "<group>"; };
 		09C633F51E13BFA1004C0480 /* HTTPNetworkLibrary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HTTPNetworkLibrary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		09C633F91E13BFA1004C0480 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		09C633FB1E13BFA1004C0480 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -157,6 +160,8 @@
 				09C634371E1510A0004C0480 /* AFQueryStringPair.m */,
 				097305B51E1B8E8200891012 /* ZYNetworkManager.h */,
 				097305B61E1B8E8200891012 /* ZYNetworkManager.m */,
+				0982AC241E1F7DAE00950ED5 /* ZYFileEntity.h */,
+				0982AC251E1F7DAE00950ED5 /* ZYFileEntity.m */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -302,6 +307,7 @@
 				09C634001E13BFA1004C0480 /* ViewController.m in Sources */,
 				09C633FD1E13BFA1004C0480 /* AppDelegate.m in Sources */,
 				09C634061E13BFA2004C0480 /* HTTPNetworkLibrary.xcdatamodeld in Sources */,
+				0982AC261E1F7DAE00950ED5 /* ZYFileEntity.m in Sources */,
 				09C634381E1510A0004C0480 /* AFQueryStringPair.m in Sources */,
 				09C633FA1E13BFA1004C0480 /* main.m in Sources */,
 			);
