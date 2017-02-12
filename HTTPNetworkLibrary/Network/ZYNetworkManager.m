@@ -91,6 +91,12 @@ FOUNDATION_EXPORT NSArray * AFQueryStringPairsFromKeyAndValue(NSString *key, id 
     return self;
 }
 
+- (void)dealloc
+{
+    //销毁session对象
+    [self.session invalidateAndCancel];
+}
+
 - (void)bulidRequest
 {
     NSString *completeUrlStr = self.urlStr;
