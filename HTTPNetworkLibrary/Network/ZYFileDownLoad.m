@@ -23,12 +23,39 @@
 
 //将urlStr转化后产生的urlPath
 @property (nonatomic, copy) NSString *urlPath;
+
 @end
+
+//存储正在删除的文件的url
+static NSMutableArray *_delArr;
 
 @implementation ZYFileDownLoad
 
++(void)load
+{
+    static dispatch_once_t onceToken;
+    
+    dispatch_once(&onceToken, ^{
+        if (_delArr == nil)
+        {
+            _delArr = [NSMutableArray array];
+        }
+    });
+}
+
 - (void)start
 {
+    for (int i = 0; i < _delArr.count; i++)    //是否正在删除这个url所在的文件
+    {
+        NSString *delStr = _delArr[i];
+        
+        if ([delStr isEqualToString:self.urlStr])
+        {
+            NSLog(@"error: 正在删除该文件");
+            return;
+        }
+    }
+    
     [self createDirectoryForDownLoadFile];
     
     [self fetchCurrentSize];
@@ -56,12 +83,23 @@
 {
     _downLoading = NO;
     
+    !self.progressHandler? :self.progressHandler(0);
+    
     NSFileManager *fileManager = [NSFileManager defaultManager];
     
+    NSString *tmpUrlStr = [self.urlStr mutableCopy];
+    [_delArr addObject:tmpUrlStr];
     //如果文件存在沙盒中
     if ([fileManager fileExistsAtPath:self.storePath])
     {
-        [fileManager removeItemAtPath:self.storePath error:nil];
+        dispatch_async(dispatch_get_global_queue(0, 0), ^{
+            [fileManager removeItemAtPath:self.storePath error:nil];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [_delArr removeObject:tmpUrlStr];
+            });
+        });
+        
     }
     
     NSString *tmpStr = [NSString stringWithFormat:@"%@%@", self.urlPath, FileTotalSizeName];
@@ -71,7 +109,6 @@
     {
         [fileManager removeItemAtPath:fileSizePath error:nil];
     }
-    
     [self.dataTask cancel];
     [self.session invalidateAndCancel];
     self.session = nil;
