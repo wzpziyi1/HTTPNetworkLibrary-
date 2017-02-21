@@ -94,6 +94,7 @@
         [fileManager createDirectoryAtPath:DirectoryPath withIntermediateDirectories:YES attributes:nil error:nil];
     }
     _storePath = [DirectoryPath stringByAppendingPathComponent:self.urlStr];
+    _storePath = [_storePath stringByReplacingOccurrencesOfString:@"/" withString:@"-"];
 }
 
 /*得到文件当前下载大小*/

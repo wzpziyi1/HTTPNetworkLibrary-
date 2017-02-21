@@ -56,6 +56,9 @@
                                     <constraint firstAttribute="height" constant="30" id="ELc-jN-auj"/>
                                 </constraints>
                                 <state key="normal" title="暂停下载"/>
+                                <connections>
+                                    <action selector="clickDownloadBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cw9-nx-rtX"/>
+                                </connections>
                             </button>
                             <button opaque="NO" tag="103" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vwe-G0-HRF">
                                 <rect key="frame" x="132" y="406" width="111" height="30"/>
@@ -63,6 +66,9 @@
                                     <constraint firstAttribute="height" constant="30" id="jAr-RN-hBj"/>
                                 </constraints>
                                 <state key="normal" title="取消下载"/>
+                                <connections>
+                                    <action selector="clickDownloadBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="fYg-hf-YQ0"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
