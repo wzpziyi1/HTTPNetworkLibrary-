@@ -8,14 +8,34 @@
 
 #import "ViewController.h"
 #import "ZYNetworkManager.h"
+#import "ZYFileDownLoad.h"
 
 @interface ViewController ()
+@property (nonatomic, strong) ZYFileDownLoad *downLoadTool;
+@property (weak, nonatomic) IBOutlet UIProgressView *sliderView;
 
 @end
 
 @implementation ViewController
 
-- (void)viewDidLoad {
+- (ZYFileDownLoad *)downLoadTool
+{
+    if (!_downLoadTool)
+    {
+        //http://apache.fayea.com/hadoop/common/hadoop-3.0.0-alpha2/hadoop-3.0.0-alpha2-src.tar.gz
+        _downLoadTool = [[ZYFileDownLoad alloc] init];
+        
+        _downLoadTool.urlStr = @"http://apache.fayea.com/hadoop/common/hadoop-3.0.0-alpha2/hadoop-3.0.0-alpha2-src.tar.gz";
+        __weak typeof(self)weakSelf = self;
+        _downLoadTool.progressHandler = ^(CGFloat progress){
+            weakSelf.sliderView.progress = progress;
+        };
+    }
+    return _downLoadTool;
+}
+
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
@@ -33,6 +53,28 @@
     [self testGet];
 
 }
+
+- (IBAction)clickDownloadBtn:(UIButton *)sender
+{
+    switch (sender.tag)
+    {
+        case 101:       //开始下载
+            [self.downLoadTool start];
+            break;
+            
+        case 102:       //暂停下载
+            [self.downLoadTool pause];
+            break;
+            
+        case 103:       //取消下载
+            [self.downLoadTool cancle];
+            break;
+            
+        default:
+            break;
+    }
+}
+
 
 - (void)testGet
 {

@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,6 +23,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rvo-Lm-bDg">
+                                <rect key="frame" x="145" y="120" width="98" height="55"/>
                                 <color key="backgroundColor" red="0.97140842013888884" green="0.6588235294117647" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="98" id="8rN-ff-eG7"/>
@@ -30,13 +34,58 @@
                                     <action selector="clickRequestBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LFo-eF-Z6N"/>
                                 </connections>
                             </button>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Hna-34-wE7">
+                                <rect key="frame" x="20" y="247" width="335" height="4"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="4" id="hi1-rd-d6s"/>
+                                </constraints>
+                            </progressView>
+                            <button opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Pfx-OW-Gb6">
+                                <rect key="frame" x="132" y="286" width="111" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="iv2-uY-HXc"/>
+                                </constraints>
+                                <state key="normal" title="开始下载"/>
+                                <connections>
+                                    <action selector="clickDownloadBtn:" destination="BYZ-38-t0r" eventType="touchUpInside" id="oAK-Oq-4VT"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="102" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eIN-O1-V4T">
+                                <rect key="frame" x="132" y="346" width="111" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="ELc-jN-auj"/>
+                                </constraints>
+                                <state key="normal" title="暂停下载"/>
+                            </button>
+                            <button opaque="NO" tag="103" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vwe-G0-HRF">
+                                <rect key="frame" x="132" y="406" width="111" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="jAr-RN-hBj"/>
+                                </constraints>
+                                <state key="normal" title="取消下载"/>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="Hna-34-wE7" secondAttribute="trailing" constant="20" id="1iU-Ol-OpM"/>
+                            <constraint firstAttribute="trailing" secondItem="Pfx-OW-Gb6" secondAttribute="trailing" constant="132" id="3c1-AZ-YJ0"/>
+                            <constraint firstItem="Hna-34-wE7" firstAttribute="top" secondItem="Rvo-Lm-bDg" secondAttribute="bottom" constant="72" id="81h-CT-1VB"/>
+                            <constraint firstItem="eIN-O1-V4T" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="132" id="8V7-79-fkY"/>
+                            <constraint firstItem="Vwe-G0-HRF" firstAttribute="top" secondItem="eIN-O1-V4T" secondAttribute="bottom" constant="30" id="AGr-kg-0CS"/>
+                            <constraint firstItem="eIN-O1-V4T" firstAttribute="top" secondItem="Pfx-OW-Gb6" secondAttribute="bottom" constant="30" id="Bd1-4o-w2e"/>
+                            <constraint firstAttribute="trailing" secondItem="eIN-O1-V4T" secondAttribute="trailing" constant="132" id="Eln-7E-ULH"/>
+                            <constraint firstItem="Hna-34-wE7" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="PjQ-fx-CCh"/>
+                            <constraint firstItem="Vwe-G0-HRF" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="132" id="Qeg-gc-1w8"/>
+                            <constraint firstItem="Pfx-OW-Gb6" firstAttribute="top" secondItem="Hna-34-wE7" secondAttribute="bottom" constant="35" id="aCB-QC-9fi"/>
                             <constraint firstItem="Rvo-Lm-bDg" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="100" id="irl-jp-fFf"/>
+                            <constraint firstItem="Pfx-OW-Gb6" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="132" id="kMv-D4-6Ek"/>
                             <constraint firstItem="Rvo-Lm-bDg" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="129" id="rWL-kA-Ncn"/>
+                            <constraint firstAttribute="trailing" secondItem="Vwe-G0-HRF" secondAttribute="trailing" constant="132" id="xWJ-52-Mgy"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="sliderView" destination="Hna-34-wE7" id="7Vq-wB-Bh2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
