@@ -21,6 +21,8 @@
 
 @property (nonatomic, strong) NSURLSession *session;
 
+//将urlStr转化后产生的urlPath
+@property (nonatomic, copy) NSString *urlPath;
 @end
 
 @implementation ZYFileDownLoad
@@ -53,7 +55,6 @@
 - (void)cancle
 {
     _downLoading = NO;
-    [self.dataTask suspend];
     
     NSFileManager *fileManager = [NSFileManager defaultManager];
     
@@ -63,7 +64,7 @@
         [fileManager removeItemAtPath:self.storePath error:nil];
     }
     
-    NSString *tmpStr = [NSString stringWithFormat:@"%@%@", self.urlStr, FileTotalSizeName];
+    NSString *tmpStr = [NSString stringWithFormat:@"%@%@", self.urlPath, FileTotalSizeName];
     NSString *fileSizePath = [DirectoryPath stringByAppendingPathComponent:tmpStr];
     //如果文件totalSize存在沙盒中
     if ([fileManager fileExistsAtPath:fileSizePath])
@@ -71,7 +72,12 @@
         [fileManager removeItemAtPath:fileSizePath error:nil];
     }
     
+    [self.dataTask cancel];
     [self.session invalidateAndCancel];
+    self.session = nil;
+    self.dataTask = nil;
+    self.outputStream = nil;
+    self.urlPath = nil;
 }
 
 
@@ -93,8 +99,7 @@
     {
         [fileManager createDirectoryAtPath:DirectoryPath withIntermediateDirectories:YES attributes:nil error:nil];
     }
-    _storePath = [DirectoryPath stringByAppendingPathComponent:self.urlStr];
-    _storePath = [_storePath stringByReplacingOccurrencesOfString:@"/" withString:@"-"];
+    _storePath = [DirectoryPath stringByAppendingPathComponent:self.urlPath];
 }
 
 /*得到文件当前下载大小*/
@@ -116,7 +121,7 @@
 /*存储文件总大小到沙盒中*/
 - (void)storeFileTotalSize:(long long)size
 {
-    NSString *tmpStr = [NSString stringWithFormat:@"%@%@", self.urlStr, FileTotalSizeName];
+    NSString *tmpStr = [NSString stringWithFormat:@"%@%@", self.urlPath, FileTotalSizeName];
     NSString *fileSizePath = [DirectoryPath stringByAppendingPathComponent:tmpStr];
     
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
@@ -127,7 +132,7 @@
 /*获取沙盒中存储的文件总大小*/
 - (void)fetchFileTotalSize
 {
-    NSString *tmpStr = [NSString stringWithFormat:@"%@%@", self.urlStr, FileTotalSizeName];
+    NSString *tmpStr = [NSString stringWithFormat:@"%@%@", self.urlPath, FileTotalSizeName];
     NSString *fileSizePath = [DirectoryPath stringByAppendingPathComponent:tmpStr];
     NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithContentsOfFile:fileSizePath];
     _totalSize = 0;
@@ -194,6 +199,12 @@
         _dataTask = [self.session dataTaskWithRequest:request];
     }
     return _dataTask;
+}
+
+- (void)setUrlStr:(NSString *)urlStr
+{
+    _urlStr = urlStr;
+    self.urlPath = [urlStr stringByReplacingOccurrencesOfString:@"/" withString:@"-"];
 }
 
 @end

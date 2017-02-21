@@ -23,9 +23,10 @@
     if (!_downLoadTool)
     {
         //http://apache.fayea.com/hadoop/common/hadoop-3.0.0-alpha2/hadoop-3.0.0-alpha2-src.tar.gz
+        
         _downLoadTool = [[ZYFileDownLoad alloc] init];
         
-        _downLoadTool.urlStr = @"http://apache.fayea.com/hadoop/common/hadoop-3.0.0-alpha2/hadoop-3.0.0-alpha2-src.tar.gz";
+        _downLoadTool.urlStr = @"http://images2015.cnblogs.com/blog/471463/201607/471463-20160715122131264-1060643549.gif";
         __weak typeof(self)weakSelf = self;
         _downLoadTool.progressHandler = ^(CGFloat progress){
             weakSelf.sliderView.progress = progress;
