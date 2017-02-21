@@ -84,9 +84,11 @@ static NSMutableArray *_delArr;
     _downLoading = NO;
     
     !self.progressHandler? :self.progressHandler(0);
-    
+    [self.dataTask cancel];
+    [self.outputStream close];
+    [self.session invalidateAndCancel];
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    
+
     NSString *tmpUrlStr = [self.urlStr mutableCopy];
     [_delArr addObject:tmpUrlStr];
     //如果文件存在沙盒中
@@ -101,7 +103,6 @@ static NSMutableArray *_delArr;
         });
         
     }
-    
     NSString *tmpStr = [NSString stringWithFormat:@"%@%@", self.urlPath, FileTotalSizeName];
     NSString *fileSizePath = [DirectoryPath stringByAppendingPathComponent:tmpStr];
     //如果文件totalSize存在沙盒中
@@ -109,12 +110,15 @@ static NSMutableArray *_delArr;
     {
         [fileManager removeItemAtPath:fileSizePath error:nil];
     }
-    [self.dataTask cancel];
-    [self.session invalidateAndCancel];
+    
     self.session = nil;
     self.dataTask = nil;
     self.outputStream = nil;
     self.urlPath = nil;
+    _currentSize = 0;
+    _totalSize = 0;
+    self.progressHandler = nil;
+    self.urlStr = nil;
 }
 
 

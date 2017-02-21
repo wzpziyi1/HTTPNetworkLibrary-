@@ -72,6 +72,7 @@
             
         case 103:       //取消下载
             [self.downLoadTool cancle];
+            self.downLoadTool = nil;
             break;
             
         default:
